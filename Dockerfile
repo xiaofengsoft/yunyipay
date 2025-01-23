@@ -5,9 +5,6 @@ FROM php:8.2-cli
 RUN echo "deb http://mirrors.aliyun.com/debian/ bookworm main non-free contrib" > /etc/apt/sources.list && \
     echo "deb-src http://mirrors.aliyun.com/debian/ bookworm main non-free contrib" >> /etc/apt/sources.list
 
-
-
-
 # 安装必要的扩展
 RUN apt-get update && apt-get install -y --fix-missing \
     git \
@@ -28,6 +25,8 @@ WORKDIR /var/www/html
 
 # 安装 Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN composer install
 
 # 暴露端口 9004 (Xdebug)
 EXPOSE 9004
