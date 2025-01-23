@@ -1,0 +1,102 @@
+ {include file="public/header" title="登录" functon="Login"/}
+              <h4 class="mb-2">Welcome to {:$config['sitename']}! 👋</h4>
+              <p class="mb-4">登 录 您 的 账 号 开 始 新 的 一 天 吧!</p>
+              {if condition="$config['logincode-type'] != '3'"}
+              <form id="formAuthentication" class="mb-3">
+                {if condition="$config['logincode-type'] == '0'"}
+                    <div class="mb-3">
+                  <label class="form-label">账 号</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    placeholder="请 输 入 您 的 账 号"
+                    autofocus
+                  />
+                </div>
+                    <div class="mb-3 form-password-toggle">
+                  <div class="d-flex justify-content-between">
+                    <label class="form-label" for="password">密 码</label>
+                    {if condition="$config['retrieve-type'] != 0"}
+                        <a href="/User/Lostpwd">
+                          <small>忘 记 密 码?</small>
+                        </a>
+                    {/if}
+                  </div>
+                  <div class="input-group input-group-merge">
+                    <input
+                      type="password"
+                      id="password"
+                      class="form-control"
+                      name="password"
+                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                      aria-describedby="password"
+                    />
+                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                  </div>
+                </div>
+                {/if}
+                {if condition="$config['logincode-type'] == '2'"}
+    				<div class="mb-3">
+    				    <label class="form-label">邮 箱</label>
+    				    <input
+                            type="email"
+                            class="form-control"
+                            name="email"
+                            id="email"
+                            placeholder="请 输 入 您 的 邮 箱"
+                            autofocus
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">邮 箱 验 证 码</label>
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="captcha"
+                                id = "numeral-mask"
+                                placeholder="请 输 入 邮 箱 验 证 码"
+                            />
+                            <button class="btn btn-outline-secondary"
+    														type="button" id="send-code">发送验证码</button>
+                        </div>
+                    </div>
+				{/if}
+                {if condition="$config['captcha-type'] == '1'"}
+                    <div class="mb-3">
+                      <label class="form-label">验 证 码</label>
+                      <div class="input-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="ordinary_captcha"
+                            placeholder="请 输 入 验 证 码"
+                        />
+                        <img id="codeimg" class="login-captcha"  alt="验证码" style="display:block;"/>
+                      </div>
+                    </div>
+
+                {/if}
+                <div class="mb-3">
+                  <div class="form-check">
+                    <input class="form-check-input" name="remember" type="checkbox" checked id="remember" />
+                    <label class="form-check-label" for="remember"> 记 住 我 </label>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <button class="btn btn-primary d-grid w-100"  lay-filter="dataSubmit" lay-submit>登 录</button>
+                </div>
+              </form>
+
+              <p class="text-center">
+                <span>没 有 账 号?</span>
+                <a href="/User/Reg">
+                  <span>创 建 一 个 账 号</span>
+                </a>
+              </p>
+           
+              {/if}
+
+    <!-- / Content -->
+{include file="public/footer" functons="login"/}
